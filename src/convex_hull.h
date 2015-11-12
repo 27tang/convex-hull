@@ -9,6 +9,8 @@ class Point
     Point(int x, int y);    //constructure with arguments
     ~Point();               //destructor
 
+    void display();
+
   private:
     int x;
     int y;
@@ -24,7 +26,7 @@ class Line
     Point points[2];
 
 };
-
+/*
 class VerticalLine: public Line
 {
   public:
@@ -45,4 +47,4 @@ class HorizontalLine: public Line
 
 }
 
-
+*/
