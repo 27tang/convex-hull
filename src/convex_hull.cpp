@@ -27,3 +27,10 @@ Line::Line()
 
 
 */
+
+BruteForceConvexHull::BruteForceConvexHull()
+{
+
+}
+
+
