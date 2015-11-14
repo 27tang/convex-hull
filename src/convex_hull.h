@@ -1,3 +1,4 @@
+#include <stdlib.h>
 #include <iostream>
 using namespace std;
 
@@ -8,11 +9,20 @@ class Point
     Point();
     Point(int x, int y);    //constructure with arguments
     Point(const Point & copySource);  //copy constructor
-    int multX(int toMultiply);
-    int multY(int toMultiply);
+
 
     ~Point();               //destructor
 
+
+
+    int multX(int toMultiply);
+    int multY(int toMultiply);
+
+    int XmultiplyY(const Point & toMultiply);
+
+    int subtractX(const Point & toSubtract);
+    int subtractY(const Point & toSubtract);
+    
     int compareX(const Point & toCompare);
     int compareY(const Point & toCompare);
     void display();
