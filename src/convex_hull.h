@@ -8,6 +8,9 @@ class Point
     Point();
     Point(int x, int y);    //constructure with arguments
     Point(const Point & copySource);  //copy constructor
+    int multX(int toMultiply);
+    int multY(int toMultiply);
+
     ~Point();               //destructor
 
     int compareX(const Point & toCompare);

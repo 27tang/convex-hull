@@ -41,6 +41,17 @@ int Point::compareY(const Point & toCompare)
     return 1;
   else return 0;
 }
+
+int Point::multX(int toMultiply)
+{
+  return x * toMultiply;
+}
+
+int Point::multY(int toMultiply)
+{
+  return y * toMultiply;
+}
+
 void Point::display()
 {
   cout << "X Coordinate: " << x << endl;
