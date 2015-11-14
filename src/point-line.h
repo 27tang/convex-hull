@@ -89,22 +89,3 @@ class SkewLine: public Line
       int b;
       int c;
 };
-
-class BruteForceConvexHull
-{
-  public:
-    BruteForceConvexHull();
-    ~BruteForceConvexHull();
-  private:
-
-};
-
-class QuickHull
-{
-  public:
-    QuickHull();
-    ~QuickHull();
-  private:
-
-
-};

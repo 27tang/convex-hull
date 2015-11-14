@@ -1,4 +1,4 @@
-#include "convex_hull.h"
+#include "point-line.h"
 
 
 Point::Point()
@@ -195,18 +195,6 @@ void SkewLine::display()
   cout << "b value: " << b << endl;
   cout << "c value: " << c << endl;
 
-
-}
-
-
-
-
-
-
-
-
-BruteForceConvexHull::BruteForceConvexHull()
-{
 
 }
 
