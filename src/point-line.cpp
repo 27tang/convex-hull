@@ -71,6 +71,17 @@ int Point::subtractY(const Point & toSubtract)
 }
 
 
+int Point::pointRelation(const Point & toCompare)
+{
+  if(this->subtractX(toCompare) == 0)
+    return 1;
+  if(this->subtractY(toCompare) == 0)
+    return 2;
+  else
+    return 0;
+
+}
+
 void Point::display()
 {
   cout << "(" << this->x << ", " << this->y << ")";
@@ -152,7 +163,7 @@ int HorizontalLine::whichSideOfLine(Point point)
 void HorizontalLine::display()
 {
   cout << "Displaying Horizontal Line" << endl;
-   cout << "p1: "; points[0]->display(); cout << endl;
+  cout << "p1: "; points[0]->display(); cout << endl;
   cout << "p2: "; points[1]->display(); cout << endl;
 
 
@@ -181,8 +192,8 @@ SkewLine::~SkewLine()
 int SkewLine::whichSideOfLine(Point point)
 {
 
-  cout << "ax: " << point.multX(a) << endl;
-  cout << "by: " << point.multY(b) << endl;
+//  cout << "ax: " << point.multX(a) << endl;
+//  cout << "by: " << point.multY(b) << endl;
   return point.multX(a) + point.multY(b) - c;
 }
 
@@ -191,9 +202,9 @@ void SkewLine::display()
   cout << "Displaying Skew Line" << endl;
   cout << "p1: "; points[0]->display(); cout << endl;
   cout << "p2: "; points[1]->display(); cout << endl;
-  cout << "a value: " << a << endl;
-  cout << "b value: " << b << endl;
-  cout << "c value: " << c << endl;
+//  cout << "a value: " << a << endl;
+//  cout << "b value: " << b << endl;
+//  cout << "c value: " << c << endl;
 
 
 }

@@ -25,6 +25,9 @@ class Point
     
     int compareX(const Point & toCompare);
     int compareY(const Point & toCompare);
+
+    int pointRelation(const Point & toCompare);
+
     void display();
 
   private:
