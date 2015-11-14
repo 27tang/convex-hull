@@ -7,9 +7,11 @@ class Point
   public:
     Point();
     Point(int x, int y);    //constructure with arguments
-    Point(Point copySource);  //copy constructor
+    Point(const Point & copySource);  //copy constructor
     ~Point();               //destructor
 
+    int compareX(const Point & toCompare);
+    int compareY(const Point & toCompare);
     void display();
 
   private:
@@ -21,14 +23,14 @@ class Line
 {
   public:
     Line();
-    Line(Point p1, Point p2);
+    Line(const Point & p1, const Point & p2);
     ~Line();
 
     virtual int whichSideOfLine(Point point) = 0;
-    virtual int display() = 0;
+    virtual void display() = 0;
 
-  private:
-    Point points[2];
+  protected:
+    Point * points[2];
 
 };
 
@@ -39,8 +41,8 @@ class VerticalLine: public Line
     VerticalLine(Point p1, Point p2);
     ~VerticalLine();
     
-    virtual int whichSideOfLine(Point point) = 0;
-    virtual int display() = 0;
+    virtual int whichSideOfLine(Point point);
+    virtual void display();
   private:
 
 };
@@ -52,14 +54,28 @@ class HorizontalLine: public Line
     HorizontalLine(Point p1, Point p2);
     ~HorizontalLine();
 
-    virtual int whichSideOfLine(Point point) = 0;
-    virtual int display() = 0;
+    virtual int whichSideOfLine(Point point);
+    virtual void display();
 
   private:
 
-}
+};
 
+class SkewLine: public Line
+{
+  public:
+    SkewLine();
+    SkewLine(Point p1, Point p2);
+    ~SkewLine();
 
+    virtual int whichSideOfLine(Point point);
+    virtual void display();
+
+  private:
+      int a;
+      int b;
+      int c;
+};
 
 class BruteForceConvexHull
 {
