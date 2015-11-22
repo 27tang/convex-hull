@@ -16,5 +16,5 @@ brute-force-matt: point-line.cpp brute-force-matt.cpp
 	g++ point-line.cpp brute-force-matt.cpp -o brute-force-matt -g
 
 
-grapher: grapher.cpp
-	g++ grapher.cpp -o grapher -g
+grapher: grapher.cpp point-line.cpp
+	g++ grapher.cpp point-line.cpp -o grapher -g
