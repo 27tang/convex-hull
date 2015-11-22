@@ -1,0 +1,26 @@
+Running Matt's brute force Convex Hull...
+(26, 86)
+(78, -71)
+(-63, 59)
+(58, -68)
+(-85, 52)
+(-5, 74)
+(-15, 51)
+(61, -45)
+(-98, 17)
+(-3, -38)
+------Displaying Skew Line
+p1: (26, 86)
+p2: (78, -71)
+------Displaying Skew Line
+p1: (26, 86)
+p2: (-63, 59)
+------Displaying Skew Line
+p1: (78, -71)
+p2: (58, -68)
+------Displaying Skew Line
+p1: (-63, 59)
+p2: (-85, 52)
+------Displaying Skew Line
+p1: (-85, 52)
+p2: (-98, 17)

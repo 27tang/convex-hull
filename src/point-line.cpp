@@ -104,13 +104,13 @@ Line::~Line()
 
 }
 
-int Line::whichSideOfLine(Point point){}  //pure virtual
+int Line::whichSideOfLine(Point &point){}  //pure virtual
 
 void Line::display(){}
 
 VerticalLine::VerticalLine():Line(){}
 
-VerticalLine::VerticalLine(Point p1, Point p2):Line(p1,p2)
+VerticalLine::VerticalLine(Point& p1, Point& p2):Line(p1,p2)
 {
   if(p1.subtractX(p2) != 0)
   {
@@ -123,7 +123,7 @@ VerticalLine::~VerticalLine()
 {}
 
 //returns -1 if to the left, 1 if to the right, 0 if on
-int VerticalLine::whichSideOfLine(Point point)
+int VerticalLine::whichSideOfLine(Point &point)
 {
 
   return points[0]->compareX(point);
@@ -139,7 +139,7 @@ void VerticalLine::display()
 
 HorizontalLine::HorizontalLine():Line(){}
 
-HorizontalLine::HorizontalLine(Point p1, Point p2):Line(p1,p2)
+HorizontalLine::HorizontalLine(Point &p1, Point& p2):Line(p1,p2)
 {
   if(p1.subtractY(p2) != 0)
   {
@@ -155,7 +155,7 @@ HorizontalLine::~HorizontalLine()
 }
 
 //returns -1 if under, 1 if above, 0 if on
-int HorizontalLine::whichSideOfLine(Point point)
+int HorizontalLine::whichSideOfLine(Point &point)
 {
      return points[1]->compareY(point);
 }
@@ -173,7 +173,7 @@ void HorizontalLine::display()
 
 SkewLine::SkewLine():Line(){}
 
-SkewLine::SkewLine(Point p1, Point p2):Line(p1,p2)
+SkewLine::SkewLine(Point &p1, Point &p2):Line(p1,p2)
 {
   //ax + by = c
   //a = y2 - y1, b = x1 - x2, c = x1y1 - y1x2
@@ -189,7 +189,7 @@ SkewLine::~SkewLine()
 }
 
 //returns -1 if to the left, 1 if right, 0 if on
-int SkewLine::whichSideOfLine(Point point)
+int SkewLine::whichSideOfLine(Point &point)
 {
 
 //  cout << "ax: " << point.multX(a) << endl;

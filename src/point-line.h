@@ -42,7 +42,7 @@ class Line
     Line(const Point & p1, const Point & p2);
     ~Line();
 
-    virtual int whichSideOfLine(Point point) = 0;
+    virtual int whichSideOfLine(Point &point) = 0;
     virtual void display() = 0;
 
   protected:
@@ -54,10 +54,10 @@ class VerticalLine: public Line
 {
   public:
     VerticalLine();
-    VerticalLine(Point p1, Point p2);
+    VerticalLine(Point &p1, Point &p2);
     ~VerticalLine();
     
-    virtual int whichSideOfLine(Point point);
+    virtual int whichSideOfLine(Point &point);
     virtual void display();
   private:
 
@@ -67,10 +67,10 @@ class HorizontalLine: public Line
 {
   public:
     HorizontalLine();
-    HorizontalLine(Point p1, Point p2);
+    HorizontalLine(Point& p1, Point& p2);
     ~HorizontalLine();
 
-    virtual int whichSideOfLine(Point point);
+    virtual int whichSideOfLine(Point& point);
     virtual void display();
 
   private:
@@ -81,10 +81,10 @@ class SkewLine: public Line
 {
   public:
     SkewLine();
-    SkewLine(Point p1, Point p2);
+    SkewLine(Point& p1, Point& p2);
     ~SkewLine();
 
-    virtual int whichSideOfLine(Point point);
+    virtual int whichSideOfLine(Point & point);
     virtual void display();
 
   private:
