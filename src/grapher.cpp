@@ -90,14 +90,14 @@ void Grapher::printGraph()
                 pointSetGraphed[count] = new Point(point);
                 ++count;
                 ++foundCount;
-				cout << "# ";
+				cout << "O ";
             }
 			else if(i == 0)
 				cout << "+ ";
 			else if (j == 0)
 				cout << "+ ";
 			else
-				cout << ". ";
+				cout << "- ";
 		}
         for(int k = 0; k < foundCount; ++k)
         {
