@@ -87,15 +87,21 @@ int BruteMatt::findConvexHull()
 
 			int z = 1;
 			int sideOf = line->whichSideOfLine(*pointSet[0]);
+
+			/*
 			while (sideOf == 0)
 			{
 				sideOf= line->whichSideOfLine(*pointSet[z]);
 				z++;
 			}
+			*/
+			sideOf = 0;
 			//int sideOf = line->whichSideOfLine(*pointSet[j]);
 			for (int k = 0; k < setSize; k++)
 			{
 				int sideOf2 = line->whichSideOfLine(*pointSet[k]);
+				if (sideOf2 != 0 && sideOf == 0)
+					sideOf = sideOf2;
 				if (sideOf != 0 && (sideOf2*sideOf) < 0)
 				{
 					break;
