@@ -76,7 +76,7 @@ int BruteMatt::findConvexHull()
 {
 	for (int i = 0; i < setSize; i++)
 	{
-		for (int j = i+1; j < setSize-1; j++)
+		for (int j = i+1; j < setSize; j++)
 		{
 			Line * line = NULL;
 			
@@ -85,15 +85,22 @@ int BruteMatt::findConvexHull()
 			//						 0 if it's a skew line
 			createLine(line, i, j);
 
-			int sideOf = line->whichSideOfLine(*pointSet[j+1]);
+			int z = 1;
+			int sideOf = line->whichSideOfLine(*pointSet[0]);
+			while (sideOf == 0)
+			{
+				sideOf= line->whichSideOfLine(*pointSet[z]);
+				z++;
+			}
+			//int sideOf = line->whichSideOfLine(*pointSet[j]);
 			for (int k = 0; k < setSize; k++)
 			{
 				int sideOf2 = line->whichSideOfLine(*pointSet[k]);
-				if (sideOf2 != 0 && (sideOf2*sideOf) < 0)
+				if (sideOf != 0 && (sideOf2*sideOf) < 0)
 				{
 					break;
 				} 
-				if (k == setSize-1)
+				if (k == (setSize-1))
 				{
 					//cout << "------Found part of Convex Hull------\n";
 					line->display();
