@@ -1,4 +1,4 @@
-# convex-hull-project
+# convex-hull
 
 
 ######point-set-generator:
