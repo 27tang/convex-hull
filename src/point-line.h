@@ -9,11 +9,7 @@ class Point
     Point();
     Point(int x, int y);    //constructure with arguments
     Point(const Point & copySource);  //copy constructor
-
-
     ~Point();               //destructor
-
-
 
     int multX(int toMultiply);
     int multY(int toMultiply);
@@ -33,6 +29,7 @@ class Point
   private:
     int x;
     int y;
+    int inConvexSet;
 };
 
 class Line

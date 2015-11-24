@@ -5,18 +5,21 @@ Point::Point()
 {
   x = 0;
   y = 0;
+  inConvexSet = 0;
 }
 
 Point::Point(int x, int y)
 {
   this->x = x;
   this->y = y;
+  inConvexSet = 0;
 }
 
 Point::Point(const Point & copySource)
 {
   this->x = copySource.x;
   this->y = copySource.y;
+  this->inConvexSet = copySource.inConvexSet;
 }
 
 Point::~Point()
