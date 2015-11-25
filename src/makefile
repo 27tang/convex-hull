@@ -1,4 +1,4 @@
-all: point-line-tester brute-force quick-hull point-set-generator brute-force-matt grapher
+all: point-line-tester brute-force quick-hull point-set-generator grapher
 
 point-line-tester: point-line-tester.cpp point-line.cpp
 	g++ point-line-tester.cpp point-line.cpp -o point-line-tester -g
@@ -11,10 +11,6 @@ quick-hull: point-line.cpp quick-hull.cpp
 
 point-set-generator: point-set-generator.cpp
 	g++ point-set-generator.cpp -o point-set-generator -g
-
-brute-force-matt: point-line.cpp brute-force-matt.cpp
-	g++ point-line.cpp brute-force-matt.cpp -o brute-force-matt -g
-
 
 grapher: grapher.cpp point-line.cpp
 	g++ grapher.cpp point-line.cpp -o grapher -g

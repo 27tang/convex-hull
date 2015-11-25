@@ -18,15 +18,12 @@ int main(int argc, char * argv[])
 
   int count = atoi(argv[1]);
   int range = atoi(argv[2]);
-  ofstream outFile;
-  outFile.open(argv[3]);
-  outFile << count << endl;
+  cout << count << endl;
 
   for(int i = 0; i < 2*count; ++i)
   {
     cout << (rand() % (range*2 + 1)) - range << endl;
   }
-  outFile.close();
 
   return 0;
 }

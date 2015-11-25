@@ -95,6 +95,19 @@ int Grapher::checkIfPointInSet(const Point & point)
 
 }
 
+int Grapher::checkIfPointInConvexSet(const Point & point)
+{
+	for(int i = 0; i < convexSetSize; ++i)
+	{
+		if(convexSet[i]->compareX(point)==0 && convexSet[i]->compareY(point)==0)
+			return 1;
+	}
+
+	return 0;
+
+}
+
+
 void Grapher::printGraph()
 {
 
@@ -111,6 +124,7 @@ void Grapher::printGraph()
             if(checkIfPointInConvexSet(point))
             {
                 pointSetGraphed[count] = new Point(point);
+                pointSetGraphed[count]->checkAndSetFlag();
                 ++count;
                 ++foundCount;
 				cout << "X ";
@@ -121,18 +135,24 @@ void Grapher::printGraph()
                 pointSetGraphed[count] = new Point(point);
                 ++count;
                 ++foundCount;
-				cout << "O ";
+				cout << "0 ";
             }
 			else if(i == 0)
 				cout << "+ ";
 			else if (j == 0)
 				cout << "+ ";
 			else
-				cout << "- ";
+				cout << "  ";
 		}
         for(int k = 0; k < foundCount; ++k)
         {
-          pointSetGraphed[printCursor]->display();
+          if(pointSetGraphed[printCursor]->checkFlag())
+          {
+            cout << "["; pointSetGraphed[printCursor]->display();
+            cout << "]";
+          }
+          else
+            pointSetGraphed[printCursor]->display();
           cout << " ";
           delete pointSetGraphed[printCursor];
           ++printCursor;
@@ -140,18 +160,6 @@ void Grapher::printGraph()
 		cout << endl;
 	}
 
-
-}
-
-int Grapher::checkIfPointInConvexSet(const Point & point)
-{
-	for(int i = 0; i < convexSetSize; ++i)
-	{
-		if(convexSet[i]->compareX(point)==0 && convexSet[i]->compareY(point)==0)
-			return 1;
-	}
-
-	return 0;
 
 }
 
