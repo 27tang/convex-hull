@@ -13,6 +13,7 @@ class BruteMatt
 	
 	private:
 		int setSize;
+        int convexSetSize;
 		Point ** pointSet;
 
 
@@ -20,6 +21,7 @@ class BruteMatt
 
 BruteMatt::BruteMatt()
 {
+    convexSetSize = 0;
 	setSize = 0;
 	pointSet = NULL;
 }
@@ -48,9 +50,11 @@ int BruteMatt::readInPoints()
 
 int BruteMatt::displayPointSet()
 {
+    cout << setSize << endl;
+
 	for(int i = 0; i< setSize; ++i)
 	{
-		pointSet[i]->display(); cout << endl;
+		pointSet[i]->fileFormatDisplay(); 
 	}
 }
 
@@ -111,20 +115,27 @@ int BruteMatt::findConvexHull()
 					//cout << "------Found part of Convex Hull------\n";
 					//line->display();
 
-                    pointSet[i]->setAndCheckFlag();
-                    pointSet[j]->setAndCheckFlag();
+                    if(pointSet[i]->checkAndSetFlag()==1)
+                      convexSetSize++;
+                    
+                    if(pointSet[j]->checkAndSetFlag()==1)
+                      convexSetSize++;
 				}
 			}
 		}
 	}
 
-
+    cout  << convexSetSize << endl;
+    for(int i = 0; i < setSize; ++i)
+    {
+        if(pointSet[i]->checkFlag())
+          pointSet[i]->fileFormatDisplay();
+    }
 
 }
 
 int main()
 {
-	cout << "Running Matt's brute force Convex Hull..." << endl;
 	BruteMatt bruteMatt;
 	bruteMatt.readInPoints();
 	bruteMatt.displayPointSet();

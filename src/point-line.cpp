@@ -85,9 +85,8 @@ int Point::pointRelation(const Point & toCompare)
 
 }
 
-int Point::setAndCheckFlag()
+int Point::checkAndSetFlag()
 {
-
     //returns 0 if flag is already set
     if(inConvexSet)
       return 0;
@@ -96,10 +95,22 @@ int Point::setAndCheckFlag()
     return 1;
 }
 
+int Point::checkFlag()
+{
+  if(inConvexSet)
+    return 1;
+  else
+    return 0;
+}
 
 void Point::display()
 {
   cout << "(" << this->x << ", " << this->y << ")";
+}
+
+void Point::fileFormatDisplay()
+{
+  cout << this->x << endl << this->y << endl;
 }
 
 Line::Line()

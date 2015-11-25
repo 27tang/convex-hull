@@ -24,7 +24,7 @@ int main(int argc, char * argv[])
 
   for(int i = 0; i < 2*count; ++i)
   {
-    outFile << (rand() % (range*2 + 1)) - range << endl;
+    cout << (rand() % (range*2 + 1)) - range << endl;
   }
   outFile.close();
 

@@ -19,25 +19,33 @@ class Grapher
     	void readInPoints();
 		int checkIfPointInSet(const Point & point);
 		void printGraph();
- 
+        
+        int checkIfPointInConvexSet(const Point & point);
+
 	private:
         int graphSize;
 		int setSize;
+        int convexSetSize;
 		Point ** pointSet;
+        Point ** convexSet;
 
 };
 
 Grapher::Grapher()
 {
+    convexSetSize = 0;
 	setSize = 0;
 	pointSet = NULL;
+    convexSet = NULL;
 }
 
 Grapher::Grapher(int size)
 {
+  convexSetSize = 0;
   setSize = 0;
   pointSet = NULL;
   graphSize = size;
+  convexSet = NULL;
 }
 
 Grapher::~Grapher(){
@@ -57,6 +65,20 @@ void Grapher::readInPoints()
     cin >> x; cin.ignore();
     cin >> y; cin.ignore();
     pointSet[i] = new Point(x, y);
+  }
+
+  
+  cin >> convexSetSize; cin.ignore();
+  
+  convexSet = new Point * [convexSetSize];
+
+  for(int i = 0; i < convexSetSize; ++i)
+  {
+      int x = 0;
+      int y = 0;
+      cin >> x; cin.ignore();
+      cin >> y; cin.ignore();
+      convexSet[i] = new Point(x, y);
   }
 
 }
@@ -85,7 +107,16 @@ void Grapher::printGraph()
 		for(int j = -graphSize; j < graphSize + 1; ++j)
 		{
             Point point(j, i);
-			if(checkIfPointInSet(point))
+
+            if(checkIfPointInConvexSet(point))
+            {
+                pointSetGraphed[count] = new Point(point);
+                ++count;
+                ++foundCount;
+				cout << "X ";
+
+            }
+            else if(checkIfPointInSet(point))
             {
                 pointSetGraphed[count] = new Point(point);
                 ++count;
@@ -108,8 +139,21 @@ void Grapher::printGraph()
         }
 		cout << endl;
 	}
+
+
 }
 
+int Grapher::checkIfPointInConvexSet(const Point & point)
+{
+	for(int i = 0; i < convexSetSize; ++i)
+	{
+		if(convexSet[i]->compareX(point)==0 && convexSet[i]->compareY(point)==0)
+			return 1;
+	}
+
+	return 0;
+
+}
 
 
 int main(int argc, char * argv[])
@@ -118,6 +162,7 @@ int main(int argc, char * argv[])
 	Grapher grapher(graphSize);
 	grapher.readInPoints();
 	grapher.printGraph();
+cout << endl << endl;
+
 	return 0;
 }
-

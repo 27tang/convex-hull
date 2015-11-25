@@ -24,9 +24,12 @@ class Point
 
     int pointRelation(const Point & toCompare);
 
-    int setAndCheckFlag();
+    int checkAndSetFlag();
+
+    int checkFlag();
 
     void display();
+    void fileFormatDisplay();
 
   private:
     int x;
