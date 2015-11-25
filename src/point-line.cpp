@@ -85,6 +85,18 @@ int Point::pointRelation(const Point & toCompare)
 
 }
 
+int Point::setAndCheckFlag()
+{
+
+    //returns 0 if flag is already set
+    if(inConvexSet)
+      return 0;
+    else  //else set flag to 1, and return 1
+      inConvexSet = 1;
+    return 1;
+}
+
+
 void Point::display()
 {
   cout << "(" << this->x << ", " << this->y << ")";

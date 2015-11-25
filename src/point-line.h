@@ -24,6 +24,8 @@ class Point
 
     int pointRelation(const Point & toCompare);
 
+    int setAndCheckFlag();
+
     void display();
 
   private:

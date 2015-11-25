@@ -109,11 +109,16 @@ int BruteMatt::findConvexHull()
 				if (k == (setSize-1))
 				{
 					//cout << "------Found part of Convex Hull------\n";
-					line->display();
+					//line->display();
+
+                    pointSet[i]->setAndCheckFlag();
+                    pointSet[j]->setAndCheckFlag();
 				}
 			}
 		}
-	}	
+	}
+
+
 
 }
 
