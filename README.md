@@ -7,13 +7,13 @@
                   point-set-generator [number of points desired] [output range]
             
 ######brute-force:
-      takes set of points from stdin and outputs a set of lines (edges of the convex-hull) -- uses the      
+      takes set of points from stdin and outputs the convex set-- uses the      
       brute-force algorithm.
           usage:
                   brute-force < [input file]
       
 ######quick-hull:
-      takes set of points from stdin and outputs a set of lines (edges of the convex-hull) -- uses the      
+      takes set of points from stdin and outputs the convex set -- uses the      
       quickhull algorithm.
           usage:
                   quick-hull < [input file]
