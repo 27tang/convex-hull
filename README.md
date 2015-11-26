@@ -2,9 +2,16 @@
 
 
 ######point-set-generator:
-      creates a set of random points and outputs to stdout
-          usage:
-                  point-set-generator [number of points desired] [output range]
+
+      SYNOPSIS:
+            point-set-generator [POINT COUNT] [RANGE]
+
+      DESCRIPTION:
+            A utility to generate a set of random 2D cartesian coordinates. Outputs to stdout.
+            
+            POINT COUNT specifies the number of points to generate.
+            RANGE specifies the absolute value of the maximum and minimum values of the coordinates.
+      
             
 ######brute-force:
 
@@ -36,10 +43,22 @@
 ######grapher:
 
       SYNOPSIS: 
+            grapher [GRAPH SIZE] [OPTION]
+      
+      DESCRIPTION:
+            A graphing utility that takes the result of a convex-hull calculation
+            from stdin and plots them on a cartesian graph. X's mark points in the convex set
+            and O's mark points that are not.
             
-      takes result of a convex-hull calculator from stdin and plots them on a cartesian 
-      graph
-            usage: grapher [range/size of graph]
+            The coordinates of each point is shown to the left of the graph. Points belonging
+            to the convex set are surrounded by [ ].
+            
+            The GRAPH SIZE argument specifies maximum x/y value of the graph.
+            
+            Options:
+                  -s
+                        disables coordinate printing
+            
             
 ####Usage Example: 
       ~/convex-hull-project/src$ ./point-set-generator 20 20 | ./brute-force | ./grapher 25
