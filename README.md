@@ -7,18 +7,36 @@
                   point-set-generator [number of points desired] [output range]
             
 ######brute-force:
-      takes set of points from stdin and outputs the convex set-- uses the      
-      brute-force algorithm.
-          usage:
-                  brute-force < [input file]
+
+      SYNOPSIS:
+            brute-force [OPTION]
+      
+      DESCRIPTION:
+            takes set of points from stdin and calculates the convex set using a brute-force
+            algorithm. Outputs the processing time (number of cycles) by default.
+                  Options:
+                        -g 
+                              outputs the original set of points and the convex set in a format
+                              that can be used as input for the grapher utility.
+
       
 ######quick-hull:
-      takes set of points from stdin and outputs the convex set -- uses the      
-      quickhull algorithm.
-          usage:
-                  quick-hull < [input file]
+
+      SYNOPSIS:
+            quick-hull [OPTION]
+      
+      DESCRIPTION:
+            takes set of points from stdin and calculates the convex set using quickhull
+            algorithm. Outputs the processing time (number of cycles) by default.
+                  Options:
+                        -g 
+                              outputs the original set of points and the convex set in a format
+                              that can be used as input for the grapher utility.
                   
 ######grapher:
+
+      SYNOPSIS: 
+            
       takes result of a convex-hull calculator from stdin and plots them on a cartesian 
       graph
             usage: grapher [range/size of graph]
