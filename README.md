@@ -63,5 +63,5 @@
             
             
 ####Usage Example: 
-      ~/convex-hull/src$ ./point-set-generator 20 20 | ./brute-force | ./grapher 25
+      ~/convex-hull/src$ ./point-set-generator 20 20 | ./brute-force -g | ./grapher 25
 ######[--------->output](https://raw.githubusercontent.com/27tang/convex-hull/master/src/sampleOutput.out)
