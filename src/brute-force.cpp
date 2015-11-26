@@ -1,5 +1,7 @@
 #include "point-line.h"
-//Matt's version of BruteForce
+#include <cstring>
+#include <time.h>
+
 class BruteForce
 {
 	public:
@@ -7,7 +9,8 @@ class BruteForce
 		~BruteForce();
 
 		int readInPoints();
-		int displayPointSet();
+		int displayForGrapher();
+        int displayProcessingTime();
 		int createLine(Line * &, int, int);	
 		int findConvexHull();
 	
@@ -15,6 +18,7 @@ class BruteForce
 		int setSize;
         int convexSetSize;
 		Point ** pointSet;
+        clock_t cycles;
 
 
 };
@@ -48,17 +52,6 @@ int BruteForce::readInPoints()
 
 }
 
-int BruteForce::displayPointSet()
-{
-    cout << setSize << endl;
-
-	for(int i = 0; i< setSize; ++i)
-	{
-		pointSet[i]->fileFormatDisplay(); 
-	}
-}
-
-
 int BruteForce::createLine(Line * & line, int i, int j)
 {
 
@@ -78,27 +71,19 @@ int BruteForce::createLine(Line * & line, int i, int j)
 
 int BruteForce::findConvexHull()
 {
+    cycles = clock();
 	for (int i = 0; i < setSize; i++)
 	{
 		for (int j = i+1; j < setSize; j++)
 		{
 			Line * line = NULL;
 			
-			//						 0 if it's a skew line
 			createLine(line, i, j);
 
 			int z = 1;
 			int sideOf = line->whichSideOfLine(*pointSet[0]);
 
-			/*
-			while (sideOf == 0)
-			{
-				sideOf= line->whichSideOfLine(*pointSet[z]);
-				z++;
-			}
-			*/
 			sideOf = 0;
-			//int sideOf = line->whichSideOfLine(*pointSet[j]);
 			for (int k = 0; k < setSize; k++)
 			{
 				int sideOf2 = line->whichSideOfLine(*pointSet[k]);
@@ -110,9 +95,6 @@ int BruteForce::findConvexHull()
 				} 
 				if (k == (setSize-1))
 				{
-					//cout << "------Found part of Convex Hull------\n";
-					//line->display();
-
                     if(pointSet[i]->checkAndSetFlag()==1)
                       convexSetSize++;
                     
@@ -123,22 +105,47 @@ int BruteForce::findConvexHull()
 		}
 	}
 
+    cycles = clock() - cycles;
+
+}
+int BruteForce::displayProcessingTime()
+{
+  cout << "Cycles: " << cycles << endl;
+}
+
+
+int BruteForce::displayForGrapher()
+{
+    cout << setSize << endl;
+	for(int i = 0; i< setSize; ++i)
+	{
+		pointSet[i]->fileFormatDisplay(); 
+	}
+
     cout  << convexSetSize << endl;
     for(int i = 0; i < setSize; ++i)
     {
         if(pointSet[i]->checkFlag())
           pointSet[i]->fileFormatDisplay();
     }
-
 }
 
-int main()
+
+int main(int argc, char * argv[])
 {
-	BruteForce bruteForce;
-	bruteForce.readInPoints();
-	bruteForce.displayPointSet();
-	
+    
+    BruteForce bruteForce;
+    bruteForce.readInPoints();
 	bruteForce.findConvexHull();
+    if(argc > 1 && strcmp(argv[1], "-g") == 0)
+    {
+      bruteForce.displayForGrapher();
+    }
+    else
+    {
+      cout << "Processing Time: " ;
+      bruteForce.displayProcessingTime();
+    }
 
 	return 0;
 }
