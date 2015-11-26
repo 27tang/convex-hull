@@ -148,12 +148,12 @@ void Grapher::printGraph()
         {
           if(pointSetGraphed[printCursor]->checkFlag())
           {
-            cout << "["; pointSetGraphed[printCursor]->display();
-            cout << "]";
+//            cout << "["; pointSetGraphed[printCursor]->display();
+//            cout << "]";
           }
           else
-            pointSetGraphed[printCursor]->display();
-          cout << " ";
+//            pointSetGraphed[printCursor]->display();
+//          cout << " ";
           delete pointSetGraphed[printCursor];
           ++printCursor;
         }
