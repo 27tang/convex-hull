@@ -8,24 +8,24 @@ class BruteForce
 		BruteForce();
 		~BruteForce();
 
-		int readInPoints();
-		int displayForGrapher();
-        int displayProcessingTime();
-		int createLine(Line * &, int, int);	
-		int findConvexHull();
+		void readInPoints();
+		void displayForGrapher();
+        	void displayProcessingTime();
+		void createLine(Line *& line, int i, int j);	
+		void findConvexHull();
 	
 	private:
 		int setSize;
-        int convexSetSize;
+        	int convexSetSize;
 		Point ** pointSet;
-        clock_t cycles;
+        	clock_t cycles;
 
 
 };
 
 BruteForce::BruteForce()
 {
-    convexSetSize = 0;
+    	convexSetSize = 0;
 	setSize = 0;
 	pointSet = NULL;
 }
@@ -35,10 +35,9 @@ BruteForce::~BruteForce()
 
 }
 
-int BruteForce::readInPoints()
+void BruteForce::readInPoints()
 {
   cin >> setSize; cin.ignore();
-
   pointSet = new Point * [setSize];
 
   for(int i = 0; i < setSize; ++i)
@@ -52,7 +51,7 @@ int BruteForce::readInPoints()
 
 }
 
-int BruteForce::createLine(Line * & line, int i, int j)
+void BruteForce::createLine(Line * & line, int i, int j)
 {
 
 	int relation = pointSet[i]->pointRelation(*pointSet[j]);
@@ -69,7 +68,7 @@ int BruteForce::createLine(Line * & line, int i, int j)
 	else{cerr << "ERROR PROCESSING POINTS!!\n"; exit(0);}
 }
 
-int BruteForce::findConvexHull()
+void BruteForce::findConvexHull()
 {
     cycles = clock();
 	for (int i = 0; i < setSize; i++)
@@ -95,57 +94,51 @@ int BruteForce::findConvexHull()
 				} 
 				if (k == (setSize-1))
 				{
-                    if(pointSet[i]->checkAndSetFlag()==1)
-                      convexSetSize++;
+                    	if(pointSet[i]->checkAndSetFlag()==1)
+                      		convexSetSize++;
                     
-                    if(pointSet[j]->checkAndSetFlag()==1)
-                      convexSetSize++;
+                    	if(pointSet[j]->checkAndSetFlag()==1)
+                      		convexSetSize++;
 				}
 			}
 		}
 	}
 
-    cycles = clock() - cycles;
+    	cycles = clock() - cycles;
 
 }
-int BruteForce::displayProcessingTime()
+void BruteForce::displayProcessingTime()
 {
-  cout << "Cycles: " << cycles << endl;
+  	cout << "Cycles: " << cycles << endl;
 }
 
 
-int BruteForce::displayForGrapher()
+void BruteForce::displayForGrapher()
 {
-    cout << setSize << endl;
+    	cout << setSize << endl;
 	for(int i = 0; i< setSize; ++i)
 	{
 		pointSet[i]->fileFormatDisplay(); 
 	}
 
-    cout  << convexSetSize << endl;
-    for(int i = 0; i < setSize; ++i)
-    {
-        if(pointSet[i]->checkFlag())
-          pointSet[i]->fileFormatDisplay();
-    }
+    	cout  << convexSetSize << endl;
+    	for(int i = 0; i < setSize; ++i)
+    	{
+        	if(pointSet[i]->checkFlag())
+          		pointSet[i]->fileFormatDisplay();
+    	}
 }
 
 
 int main(int argc, char * argv[])
 {
-    
-    BruteForce bruteForce;
-    bruteForce.readInPoints();
+	BruteForce bruteForce;
+    	bruteForce.readInPoints();
 	bruteForce.findConvexHull();
-    if(argc > 1 && strcmp(argv[1], "-g") == 0)
-    {
-      bruteForce.displayForGrapher();
-    }
-    else
-    {
-      cout << "Processing Time: " ;
-      bruteForce.displayProcessingTime();
-    }
+    	if(argc > 1 && strcmp(argv[1], "-g") == 0)
+    		bruteForce.displayForGrapher();
+    	else
+      		bruteForce.displayProcessingTime();
 
 	return 0;
 }
