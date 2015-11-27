@@ -74,13 +74,13 @@
 ####Usage Examples:
 
 ##### finding convex set and displaying only processing time:
-      ~/convex-hull/src$ ./point-set-generator 20 20 | ./brute-force
+~/convex-hull/src$ ./point-set-generator 20 20 | ./brute-force
 
-      Output:
-      > Cycles: 168
+Output:
+> Cycles: 168
 
 ##### finding convex set and graphing the result:
-      ~/convex-hull/src$ ./point-set-generator 20 20 | ./brute-force -g | ./grapher 25
+~/convex-hull/src$ ./point-set-generator 20 20 | ./brute-force -g | ./grapher 25
       
-      Output:
-      ######[Resulting Graph](https://raw.githubusercontent.com/27tang/convex-hull/master/src/sampleOutput.out)
+Output: 
+> [Resulting Graph](https://raw.githubusercontent.com/27tang/convex-hull/master/src/sampleOutput.out)
