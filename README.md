@@ -7,7 +7,7 @@
             point-set-generator [POINTS] [RANGE] [OPTIONS]
 
       DESCRIPTION:
-            A utility to generate a set of random 2D cartesian coordinates. Outputs to stdout.
+            A utility to generate a set of 2D cartesian coordinates (random by default). Outputs to stdout.
             
             POINTS specifies the number of points to generate.
             RANGE specifies the absolute value of the maximum and minimum values of the coordinates.
@@ -18,6 +18,12 @@
                               generates points sorted in nondecreasing order of their x coordinates
                               with ties resolved by increasing order of the y coordinates of the 
                               points involved.
+                              
+                        -c
+                              generates points arranged in a circle (sorted - implicit "-s" flag)
+                        
+                        -l
+                              generates points arranged in a straight line (slope of 1, sorted - implicit "-s" flag)    
             
 ######brute-force:
 
@@ -25,8 +31,9 @@
             brute-force [OPTION]
       
       DESCRIPTION:
-            takes set of points from stdin and calculates the convex set using a brute-force
-            algorithm. Outputs the processing time (number of cycles) by default.
+            Program that takes a set of points from stdin and calculates the convex set
+            using a brute-force algorithm.
+            Outputs the processing time (number of cycles) by default.
             
                   Options:
 
@@ -41,8 +48,10 @@
             quick-hull [OPTION]
       
       DESCRIPTION:
-            takes set of points from stdin and calculates the convex set using quickhull
-            algorithm. Outputs the processing time (number of cycles) by default.
+            Program that takes a set of sorted points from stdin (must use -s flag
+            when running point-set-generator) and calculates the convex set using
+            the quickhull algorithm.
+            Outputs the processing time (number of cycles) by default.
             
                   Options:
 
@@ -53,7 +62,7 @@
 ######grapher:
 
       SYNOPSIS: 
-            grapher [GRAPH SIZE] [OPTION]
+            grapher [SIZE] [OPTION]
       
       DESCRIPTION:
             A graphing utility that takes the result of a convex-hull calculation
@@ -63,7 +72,7 @@
             The coordinates of each point is shown to the left of the graph. Points belonging
             to the convex set are surrounded by [ ].
             
-            The GRAPH SIZE argument specifies maximum x/y value of the graph.
+            The SIZE argument specifies maximum x/y value of the graph.
             
                   Options:
 
