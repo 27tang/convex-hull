@@ -66,7 +66,7 @@ int BruteForce::createLine(Line * & line, int i, int j)
 	else if (relation == 0){
 		line = new SkewLine(*pointSet[i], *pointSet[j]);
 	}
-	else{cout << "ERROR PROCESSING POINTS!!\n"; exit(0);}
+	else{cerr << "ERROR PROCESSING POINTS!!\n"; exit(0);}
 }
 
 int BruteForce::findConvexHull()
