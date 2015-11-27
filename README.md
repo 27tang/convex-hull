@@ -4,7 +4,7 @@
 ######point-set-generator:
 
       SYNOPSIS:
-            point-set-generator [POINTS] [RANGE]
+            point-set-generator [POINTS] [RANGE] [OPTIONS]
 
       DESCRIPTION:
             A utility to generate a set of random 2D cartesian coordinates. Outputs to stdout.
