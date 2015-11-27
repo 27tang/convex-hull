@@ -9,8 +9,8 @@ brute-force: point-line.cpp brute-force.cpp
 quick-hull: point-line.cpp quick-hull.cpp
 	g++ point-line.cpp quick-hull.cpp -o quick-hull -g
 
-point-set-generator: point-set-generator.cpp
-	g++ point-set-generator.cpp -o point-set-generator -g
+point-set-generator: point-set-generator.cpp point-line.cpp
+	g++ point-set-generator.cpp point-line.cpp -o point-set-generator -g
 
 grapher: grapher.cpp point-line.cpp
 	g++ grapher.cpp point-line.cpp -o grapher -g
