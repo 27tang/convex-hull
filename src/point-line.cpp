@@ -155,7 +155,7 @@ VerticalLine::~VerticalLine()
 double VerticalLine::whichSideOfLine(Point &point)
 {
 
-  return points[0]->compareX(point);
+  return -(points[0]->compareX(point));
 }
 
 double VerticalLine::distanceFromLine(Point & point)
