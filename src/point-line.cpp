@@ -85,6 +85,7 @@ int Point::pointRelation(const Point & toCompare)
 
 }
 
+
 int Point::checkAndSetFlag()
 {
     //returns 0 if flag is already set
@@ -132,6 +133,8 @@ Line::~Line()
 
 int Line::whichSideOfLine(Point &point){}  //pure virtual
 
+int Line::distanceFromLine(Point & point){} //pure virtual
+
 void Line::display(){}
 
 VerticalLine::VerticalLine():Line(){}
@@ -153,6 +156,11 @@ int VerticalLine::whichSideOfLine(Point &point)
 {
 
   return points[0]->compareX(point);
+}
+
+int VerticalLine::distanceFromLine(Point & point)
+{
+  return abs(points[1]->subtractX(point));
 }
 
 void VerticalLine::display()
@@ -184,6 +192,11 @@ HorizontalLine::~HorizontalLine()
 int HorizontalLine::whichSideOfLine(Point &point)
 {
      return points[1]->compareY(point);
+}
+
+int HorizontalLine::distanceFromLine(Point & point)
+{
+  return abs(points[1]->subtractY(point));
 }
 
 void HorizontalLine::display()
@@ -223,6 +236,15 @@ int SkewLine::whichSideOfLine(Point &point)
   return point.multX(a) + point.multY(b) - c;
 }
 
+int SkewLine::distanceFromLine(Point & point)
+{
+  int top = (point.multX(a) + point.multY(b) + c);
+  double bot = sqrt(a * a + b * b);
+  
+  int result = top/bot;
+  return result;
+
+}
 void SkewLine::display()
 {
   cout << "Displaying Skew Line" << endl;

@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <iostream>
+#include <cmath>
 using namespace std;
 
 
@@ -44,7 +45,8 @@ class Line
     Line(const Point & p1, const Point & p2);
     ~Line();
 
-    virtual int whichSideOfLine(Point &point) = 0;
+    virtual int whichSideOfLine(Point & point) = 0;
+    virtual int distanceFromLine(Point & point) = 0;
     virtual void display() = 0;
 
   protected:
@@ -60,6 +62,7 @@ class VerticalLine: public Line
     ~VerticalLine();
     
     virtual int whichSideOfLine(Point &point);
+    virtual int distanceFromLine(Point & point);
     virtual void display();
   private:
 
@@ -73,6 +76,7 @@ class HorizontalLine: public Line
     ~HorizontalLine();
 
     virtual int whichSideOfLine(Point& point);
+    virtual int distanceFromLine(Point & point);
     virtual void display();
 
   private:
@@ -87,6 +91,7 @@ class SkewLine: public Line
     ~SkewLine();
 
     virtual int whichSideOfLine(Point & point);
+    virtual int distanceFromLine(Point & point);
     virtual void display();
 
   private:
