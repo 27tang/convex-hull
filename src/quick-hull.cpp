@@ -67,7 +67,10 @@ void QuickHull::createLine(Line *& line, Point *& p1, Point *& p2)
     else if (relation == 0)
         line = new SkewLine(*p1, *p2);
     else
-      cerr << "ERROR PROCESSING POINTS!!\n"; exit(0);
+    {
+      cerr << "ERROR PROCESSING POINTS!!\n"; 
+      exit(0);
+    }
 }
 
 
@@ -111,11 +114,13 @@ void QuickHull::findConvexHull()
       botSet[botCount] = pointSet[i];
       botCount++;
     }
+   }
 
+  
     quickHullTop(topSet, line, pointSet[0], pointSet[end], topCount);
     quickHullBottom(botSet, line, pointSet[0], pointSet[end],  botCount);
 
-   }
+
 	return;
 
 }
@@ -143,7 +148,7 @@ int QuickHull:: quickHullTop(Point ** pArray, Line *& line, Point *& p1, Point *
   //finding point farthest from line
   for(int i = 0; i < pArraySize; ++i)
   {     
-      dist = line->distanceFromLine(*pArray[i]);
+      dist = abs(line->distanceFromLine(*pArray[i]));
       if(dist > maxDist)
       {
         maxDist = dist;
@@ -170,7 +175,7 @@ int QuickHull:: quickHullTop(Point ** pArray, Line *& line, Point *& p1, Point *
       leftSet[leftCount] = pArray[i];
       leftCount++;
     }
-    else if(rightLine->whichSideOfLine(*pArray[i]) < 0)
+    else if(rightLine->whichSideOfLine(*pArray[i]) > 0)
     {
       rightSet[rightCount] = pArray[i];
       rightCount++;
@@ -204,7 +209,7 @@ int QuickHull::quickHullBottom(Point ** pArray, Line *& line, Point *& p1, Point
   //finding point farthest from line
   for(int i = 0; i < pArraySize; ++i)
   {     
-      dist = line->distanceFromLine(*pArray[i]);
+      dist = abs(line->distanceFromLine(*pArray[i]));
       if(dist > maxDist)
       {
         maxDist = dist;
@@ -251,13 +256,14 @@ void QuickHull::displayForGrapher()
 	{
 		pointSet[i]->fileFormatDisplay(); 
 	}
-
-    	cout  << convexSetSize << endl;
-    	for(int i = 0; i < setSize; ++i)
-    	{
-        	if(pointSet[i]->checkFlag())
-          		pointSet[i]->fileFormatDisplay();
-    	}
+//cout << "0----------" << endl;
+    cout  << convexSetSize << endl;
+    for(int i = 0; i < setSize; ++i)
+    {
+      //cout << "--" << endl;
+        if(pointSet[i]->checkFlag())
+          	pointSet[i]->fileFormatDisplay();
+    }
 }
 
 
@@ -270,7 +276,6 @@ int main(int argc, char * argv[])
     if(argc > 1 && strcmp(argv[1], "-g") == 0)
 {
       quickHull.displayForGrapher();
-	cout << "GOT IN" << endl;
 }
     //else
       //quickHull.displayProcessingTime();

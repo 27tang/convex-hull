@@ -233,12 +233,16 @@ int SkewLine::whichSideOfLine(Point &point)
 
 //  cout << "ax: " << point.multX(a) << endl;
 //  cout << "by: " << point.multY(b) << endl;
-  return point.multX(a) + point.multY(b) - c;
+  int sign = 1;
+  if(((float)(-a))/((float)b) > 0)
+    sign = -1;
+  
+  return sign * (point.multX(a) + point.multY(b) - c);
 }
 
 int SkewLine::distanceFromLine(Point & point)
 {
-  int top = (point.multX(a) + point.multY(b) + c);
+  int top = abs(point.multX(a) + point.multY(b) - c);
   double bot = sqrt(a * a + b * b);
   
   int result = top/bot;
@@ -256,5 +260,3 @@ void SkewLine::display()
 
 
 }
-
-
