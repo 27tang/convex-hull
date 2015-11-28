@@ -38,6 +38,7 @@ class Point
     int inConvexSet;
 };
 
+
 class Line
 {
   public:
@@ -45,8 +46,8 @@ class Line
     Line(const Point & p1, const Point & p2);
     ~Line();
 
-    virtual int whichSideOfLine(Point & point) = 0;
-    virtual int distanceFromLine(Point & point) = 0;
+    virtual double whichSideOfLine(Point & point) = 0;
+    virtual double distanceFromLine(Point & point) = 0;
     virtual void display() = 0;
 
   protected:
@@ -61,8 +62,8 @@ class VerticalLine: public Line
     VerticalLine(Point &p1, Point &p2);
     ~VerticalLine();
     
-    virtual int whichSideOfLine(Point &point);
-    virtual int distanceFromLine(Point & point);
+    virtual double whichSideOfLine(Point &point);
+    virtual double distanceFromLine(Point & point);
     virtual void display();
   private:
 
@@ -75,8 +76,8 @@ class HorizontalLine: public Line
     HorizontalLine(Point& p1, Point& p2);
     ~HorizontalLine();
 
-    virtual int whichSideOfLine(Point& point);
-    virtual int distanceFromLine(Point & point);
+    virtual double whichSideOfLine(Point& point);
+    virtual double distanceFromLine(Point & point);
     virtual void display();
 
   private:
@@ -90,8 +91,8 @@ class SkewLine: public Line
     SkewLine(Point& p1, Point& p2);
     ~SkewLine();
 
-    virtual int whichSideOfLine(Point & point);
-    virtual int distanceFromLine(Point & point);
+    virtual double whichSideOfLine(Point & point);
+    virtual double distanceFromLine(Point & point);
     virtual void display();
 
   private:

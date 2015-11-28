@@ -131,9 +131,9 @@ Line::~Line()
 
 }
 
-int Line::whichSideOfLine(Point &point){}  //pure virtual
+double Line::whichSideOfLine(Point &point){}  //pure virtual
 
-int Line::distanceFromLine(Point & point){} //pure virtual
+double Line::distanceFromLine(Point & point){} //pure virtual
 
 void Line::display(){}
 
@@ -152,13 +152,13 @@ VerticalLine::~VerticalLine()
 {}
 
 //returns -1 if to the left, 1 if to the right, 0 if on
-int VerticalLine::whichSideOfLine(Point &point)
+double VerticalLine::whichSideOfLine(Point &point)
 {
 
   return points[0]->compareX(point);
 }
 
-int VerticalLine::distanceFromLine(Point & point)
+double VerticalLine::distanceFromLine(Point & point)
 {
   return abs(points[1]->subtractX(point));
 }
@@ -189,12 +189,12 @@ HorizontalLine::~HorizontalLine()
 }
 
 //returns -1 if under, 1 if above, 0 if on
-int HorizontalLine::whichSideOfLine(Point &point)
+double HorizontalLine::whichSideOfLine(Point &point)
 {
      return points[1]->compareY(point);
 }
 
-int HorizontalLine::distanceFromLine(Point & point)
+double HorizontalLine::distanceFromLine(Point & point)
 {
   return abs(points[1]->subtractY(point));
 }
@@ -228,24 +228,27 @@ SkewLine::~SkewLine()
 }
 
 //returns -1 if to the left, 1 if right, 0 if on
-int SkewLine::whichSideOfLine(Point &point)
+double SkewLine::whichSideOfLine(Point &point)
 {
 
 //  cout << "ax: " << point.multX(a) << endl;
 //  cout << "by: " << point.multY(b) << endl;
-  int sign = 1;
-  if(((float)(-a))/((float)b) > 0)
-    sign = -1;
+//  int sign = 1;
+//  if(((double)(-a))/((double)b) > 0)
+//    sign = -1;
   
-  return sign * (point.multX(a) + point.multY(b) - c);
+  //return sign * (point.multX(a) + point.multY(b) - c);
+   double res =  -(point.multX(a) + point.multY(b) - c);
+
+    return res;
 }
 
-int SkewLine::distanceFromLine(Point & point)
+double SkewLine::distanceFromLine(Point & point)
 {
   int top = abs(point.multX(a) + point.multY(b) - c);
   double bot = sqrt(a * a + b * b);
   
-  int result = top/bot;
+  double result = top/bot;
   return result;
 
 }
