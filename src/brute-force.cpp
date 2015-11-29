@@ -16,9 +16,9 @@ class BruteForce
 	
 	private:
 		int setSize;
-        	int convexSetSize;
+        int convexSetSize;
 		Point ** pointSet;
-        	clock_t cycles;
+        clock_t cycles;
 
 
 };
@@ -110,6 +110,7 @@ void BruteForce::findConvexHull()
 void BruteForce::displayProcessingTime()
 {
   	cout << "Cycles: " << cycles << endl;
+    cout << "Time(clicks): " << ((float)cycles)/CLOCKS_PER_SEC << endl;
 }
 
 

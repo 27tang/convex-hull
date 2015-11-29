@@ -24,6 +24,7 @@ class QuickHull
     Point ** pointSet; //dynamic array of Points
     int setSize;
     int convexSetSize; 
+    clock_t cycles;
 
 };
 
@@ -32,7 +33,6 @@ QuickHull::QuickHull()
     pointSet = NULL;
     setSize = 0;
     convexSetSize = 0;
-    clock_t cycles;
 }
 
 QuickHull::~QuickHull()
@@ -76,6 +76,8 @@ void QuickHull::createLine(Line *& line, Point *& p1, Point *& p2)
 
 void QuickHull::findConvexHull()
 {
+
+  cycles = clock();
   //if set size is less than 4, then all points are in convex set
   if(setSize < 4)
   {
@@ -120,8 +122,7 @@ void QuickHull::findConvexHull()
     quickHullTop(topSet, line, pointSet[0], pointSet[end], topCount);
     quickHullBottom(botSet, line, pointSet[0], pointSet[end],  botCount);
 
-
-	return;
+    cycles = clock() - cycles;
 
 }
 
@@ -141,9 +142,9 @@ int QuickHull:: quickHullTop(Point ** pArray, Line *& line, Point *& p1, Point *
     return 1;
   }
 
-  int maxDist = 0;
+  double maxDist = 0;
   int maxDex = 0;
-  int dist = 0;
+  double dist = 0;
   
   //finding point farthest from line
   for(int i = 0; i < pArraySize; ++i)
@@ -202,9 +203,9 @@ int QuickHull::quickHullBottom(Point ** pArray, Line *& line, Point *& p1, Point
     return 1;
   }
 
-  int maxDist = 0;
+  double maxDist = 0;
   int maxDex = 0;
-  int dist = 0;
+  double dist = 0;
   
   //finding point farthest from line
   for(int i = 0; i < pArraySize; ++i)
@@ -247,6 +248,13 @@ int QuickHull::quickHullBottom(Point ** pArray, Line *& line, Point *& p1, Point
   quickHullBottom(rightSet, rightLine, pArray[maxDex], p2, rightCount);
 
   return 3;
+}
+
+void QuickHull::displayProcessingTime()
+{
+  cout << "Cycles: " << cycles << endl;
+  cout << "Time(clicks): " << ((float) cycles)/CLOCKS_PER_SEC << endl;
+ 
 }
 
 void QuickHull::displayForGrapher()
