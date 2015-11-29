@@ -282,12 +282,12 @@ int main(int argc, char * argv[])
     quickHull.findConvexHull();
 
     if(argc > 1 && strcmp(argv[1], "-g") == 0)
-{
+    {
       quickHull.displayForGrapher();
-}
-    //else
-      //quickHull.displayProcessingTime();
-      //
-      //
+    }
+    else
+      quickHull.displayProcessingTime();
+      
+      
   return 0;
 }
