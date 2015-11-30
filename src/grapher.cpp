@@ -1,5 +1,6 @@
 #include "point-line.h"
 #include <iostream>
+#include <cstring>
 using namespace std;
 /*
  *
@@ -19,6 +20,7 @@ class Grapher
     	void readInPoints();
 		int checkIfPointInSet(const Point & point);
 		void printGraph();
+        void printGraphWithoutCoordinates();
         
         int checkIfPointInConvexSet(const Point & point);
 
@@ -163,14 +165,65 @@ void Grapher::printGraph()
 
 }
 
+void Grapher::printGraphWithoutCoordinates()
+{
+
+    Point * pointSetGraphed[setSize];
+    int count = 0;
+    for(int i = graphSize; i > -(graphSize + 1); --i)
+	{
+		for(int j = -graphSize; j < graphSize + 1; ++j)
+		{
+            Point point(j, i);
+
+            if(checkIfPointInConvexSet(point))
+            {
+                pointSetGraphed[count] = new Point(point);
+                pointSetGraphed[count]->checkAndSetFlag();
+                ++count;
+				cout << "X ";
+
+            }
+            else if(checkIfPointInSet(point))
+            {
+                pointSetGraphed[count] = new Point(point);
+                ++count;
+				cout << "0 ";
+            }
+			else if(i == 0)
+				cout << "+ ";
+			else if (j == 0)
+				cout << "+ ";
+			else
+				cout << "  ";
+		}
+		cout << endl;
+	}
+
+
+}
+
 
 int main(int argc, char * argv[])
 {
     int graphSize = atoi(argv[1]); 
+
 	Grapher grapher(graphSize);
 	grapher.readInPoints();
-	grapher.printGraph();
-cout << endl << endl;
+    
+    if(argc > 2 && strcmp(argv[2], "-s") == 0)
+	  grapher.printGraphWithoutCoordinates();
+    else
+      grapher.printGraph();
+    
+    cout << endl << endl;
 
 	return 0;
 }
+
+
+
+
+
+
+
