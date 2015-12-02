@@ -286,8 +286,8 @@ void QuickHull::displayForGrapher()
 
 void QuickHull::displayProcessingTime()
 {
-  cout << "Cycles: " << cycles << endl;
-  cout << "Time(clicks): " << ((float) cycles)/CLOCKS_PER_SEC << endl;
+  cout << cycles << endl;
+  //cout << "Time(clicks): " << ((float) cycles)/CLOCKS_PER_SEC << endl;
  
 }
 
