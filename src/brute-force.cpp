@@ -109,8 +109,9 @@ void BruteForce::findConvexHull()
 }
 void BruteForce::displayProcessingTime()
 {
-  	cout << "Cycles: " << cycles << endl;
-    cout << "Time(clicks): " << ((float)cycles)/CLOCKS_PER_SEC << endl;
+//  	cout << "Cycles: " << cycles << endl;
+//    cout << "Time(clicks): " << ((float)cycles)/CLOCKS_PER_SEC << endl;
+      cout << cycles << endl;
 }
 
 

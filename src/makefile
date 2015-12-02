@@ -19,4 +19,4 @@ matt-quick: point-line.cpp matt-quick-hull.cpp
 	g++ -O3 point-line.cpp matt-quick-hull.cpp -o matt-quick -g
 	
 averager: averager.cpp
-	g++ averager.cpp 
+	g++ averager.cpp -o averager -g 
