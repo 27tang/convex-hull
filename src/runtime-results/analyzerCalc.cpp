@@ -6,7 +6,7 @@ using namespace std;
 double bruteTheory(int N)
 {
   double result;
-  result = N*N*N;
+  result = N*N;
   return result;
 }
 double quickTheory(int N)

@@ -78,7 +78,7 @@ void QuickHull::createLine(Line *& line, Point *& p1, Point *& p2)
 
 void QuickHull::findConvexHull()
 {
-	cycles = clock();
+//	cycles = clock();
   //if set size is less than 4, then all points are in convex set
 	if(setSize < 4)
     {
@@ -151,7 +151,7 @@ void QuickHull::findConvexHull()
 	quickHullTop(pointSet, highest, 0, end, indexOfTop);
 	quickHullBottom(pointSet, lowest, 0, end, indexOfBottom);
  
-	cycles = clock() - cycles; 
+//	cycles = clock() - cycles; 
 	return;
 
 }
@@ -295,14 +295,34 @@ int main(int argc, char * argv[])
 {
     QuickHull quickHull;
     quickHull.readInPoints();
-    quickHull.findConvexHull();
+    clock_t cycles;
+    
+    if(argc > 2 && strcmp(argv[1], "-m") == 0)
+    {
+      int numTimes = atoi(argv[2]);
+      cycles = clock(); 
+      for(int i=0; i < numTimes; ++i)
+      {
+        quickHull.findConvexHull();
+      }
+      cycles = clock() - cycles; 
+      cout << cycles/numTimes << endl;
+      return 1;
+    }
 
     if(argc > 1 && strcmp(argv[1], "-g") == 0)
-{
+    {
+      quickHull.findConvexHull();
       quickHull.displayForGrapher();
-}
+      return 2;
+    }
     else
-    	quickHull.displayProcessingTime();
+    {
+      cycles = clock();
+      quickHull.findConvexHull();
+      cycles = clock() - cycles;
+      cout << cycles << endl;
+    }
       
       
   return 0;
