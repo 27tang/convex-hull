@@ -1,4 +1,4 @@
-all: averager point-line-tester brute-force quick-hull point-set-generator matt-quick grapher
+all: averager point-line-tester brute-force quick-hull point-set-generator matt-quick grapher brook-brute
 
 point-line-tester: point-line-tester.cpp point-line.cpp
 	g++ point-line-tester.cpp point-line.cpp -o point-line-tester -g
@@ -20,3 +20,6 @@ matt-quick: point-line.cpp matt-quick-hull.cpp
 	
 averager: averager.cpp
 	g++ averager.cpp -o averager -g 
+
+brook-brute: brook-line.cpp brook-brute.cpp
+	g++ brook-line.cpp brook-brute.cpp -o brook-brute -g
