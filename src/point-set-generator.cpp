@@ -30,11 +30,12 @@ int main(int argc, char * argv[])
 
   int count = atoi(argv[1]);
   int range = atoi(argv[2]);
-  cout << count-count%4 << endl;
 
 
   if(argc > 3 && strcmp(argv[3], "-s") == 0)
   {
+
+      cout << count << endl;
       generateSorted(count, range);
       return 0;
   }
@@ -46,6 +47,8 @@ int main(int argc, char * argv[])
 
   for(int i = 0; i < 2*count; ++i)
   {
+
+    cout << count << endl;
     cout << (rand() % (range*2 + 1)) - range << endl;
   }
 
@@ -55,10 +58,17 @@ int main(int argc, char * argv[])
 
 void generateCircle(int count, int range)
 {
+    
+  int moddedCount = count - (count % 4);
   int radius = range - 2;
   int x = -1;
 
   int quads = count/4;
+
+  cout << moddedCount << endl;
+  
+  Point ** pointSet = new Point*[moddedCount];
+  
   for(int i = 0; i < quads; ++i)
   {
     double y = 0;
@@ -68,16 +78,26 @@ void generateCircle(int count, int range)
     } while(y - int(y) > 0.0);
 
     x = x%(radius+1);
-    cout << x << endl;
-    cout << y << endl;
-    cout << x << endl;
-    cout << -y << endl;
-    cout << -x << endl;
-    cout << y << endl;
-    cout << -x << endl;
-    cout << -y << endl;
+
+
+    pointSet[4*i] = new Point(x, y);
+    pointSet[4*i + 1] = new Point(x, -y);
+    pointSet[4*i + 2] = new Point(-x, y);
+    pointSet[4*i + 3] = new Point(-x, -y);
+
   }
-}
+
+
+  quickSortPointsX(pointSet, 0, moddedCount-1);
+  tieBreakPoints(pointSet, moddedCount);
+
+  for(int i = 0; i < moddedCount; ++i)
+  {
+    pointSet[i]->fileFormatDisplay();
+  
+  }
+  
+ }
 
 
 double circleYmaker(int x, int radius)
