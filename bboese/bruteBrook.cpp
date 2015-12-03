@@ -1,5 +1,6 @@
 #include "line.h"
 #include <iostream>
+#include <ctime>
 using namespace std;
 
 //Prototypes.
@@ -18,13 +19,16 @@ int main() {
         points[i][2] = 0;
     }
 
-    //cout << "Set: ";
-    //for (int i = 0; i < numPoints; ++i)
-    //    cout << "[" << points[i][0] << ", " << points[i][1] << "]";
-    //cout << endl;
+    cout << numPoints << "\n";
+    for (int i = 0; i < numPoints; ++i)
+        cout << points[i][0] << "\n" << points[i][1] << "\n";
+
+    //clock_t t = clock();
 
     //Brute-force.
     bruteForce(numPoints, points);
+
+    //t = clock() - t;
 
     int total = 0;
     for (int i = 0; i < numPoints; ++i) {
