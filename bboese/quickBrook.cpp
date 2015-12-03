@@ -53,13 +53,13 @@ int main() {
 
 line * calcLine(float p1[], float p2[]) {
     line *aLine = NULL;
-    float numer = p1[0] - p2[0];
+    float numer = p1[1] - p2[1];
     if (numer == 0)
-        aLine = new vertical(p1[0]);
+        aLine = new horizontal(p1[1]);
     else {
-        float denom = p1[1] - p2[1];
+        float denom = p1[0] - p2[0];
         if (denom == 0)
-            aLine = new horizontal(p1[1]);
+            aLine = new vertical(p1[0]);
         else {
             aLine = new regLine(numer, denom, p1);
         }
@@ -148,7 +148,7 @@ void quickHull(int numPoints, float points[][3]) {
         }
     }
 
-    if (lowerCount > 2) {
+    if (lowerCount > 3) {
         int llCount = minYIndex + 1;
         int lrCount = lowerCount - minYIndex;
 
@@ -160,7 +160,7 @@ void quickHull(int numPoints, float points[][3]) {
 
             for (int lr = 1, ll = minYIndex + 1; ll < lowerCount; ++lr, ++ll) {
                 lowerRight[lr] = lowerLeft[ll];
-                upperLeft[ll] = NULL;
+                lowerLeft[ll] = NULL;
             }
             //call lower-right recursive function.
             qhBelow(lrCount, lowerRight);
