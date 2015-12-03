@@ -7,17 +7,17 @@ class line {
     public:
         line();
         ~line();
-        virtual int whichSide(const float * point) = 0;
-        virtual float distance(const float * point) = 0;
+        virtual int whichSide(const int * point) = 0;
+        virtual float distance(const int * point) = 0;
 };
 
 class regLine: public line {
     public:
         regLine();
-        regLine(float numer, float denom, const float point[2]);
+        regLine(int numer, int denom, const int point[2]);
         ~regLine();
-        int whichSide(const float point[2]);
-        float distance(const float point[2]);
+        int whichSide(const int point[2]);
+        float distance(const int point[2]);
     private:
         float slope;
         float constant;
@@ -26,23 +26,23 @@ class regLine: public line {
 class vertical: public line {
     public:
         vertical();
-        vertical(float xValue);
+        vertical(int xValue);
         ~vertical();
-        int whichSide(const float point[2]);
-        float distance(const float point[2]);
+        int whichSide(const int point[2]);
+        float distance(const int point[2]);
     private:
-        float x;
+        int x;
 };
 
 class horizontal: public line {
     public:
         horizontal();
-        horizontal(float yValue);
+        horizontal(int yValue);
         ~horizontal();
-        int whichSide(const float point[2]);
-        float distance(const float point[2]);
+        int whichSide(const int point[2]);
+        float distance(const int point[2]);
     private:
-        float y;
+        int y;
 };
 
 

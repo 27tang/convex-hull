@@ -20,6 +20,9 @@ void quickSortPointsY(Point ** pArray, int lo, int hi);
 void tieBreakPoints(Point ** pArray, int size);
 void generateSorted(int count, int range);
 
+void generateCircle(int count, int range);
+double circleYmaker(int x, int radius);
+
 int main(int argc, char * argv[])
 {
 
@@ -27,13 +30,18 @@ int main(int argc, char * argv[])
 
   int count = atoi(argv[1]);
   int range = atoi(argv[2]);
-  cout << count << endl;
+  cout << count-count%4 << endl;
 
 
   if(argc > 3 && strcmp(argv[3], "-s") == 0)
   {
       generateSorted(count, range);
       return 0;
+  }
+  else if( argc > 3 && strcmp(argv[3], "-c")==0)
+  {
+    generateCircle(count, range);
+    return 1;
   }
 
   for(int i = 0; i < 2*count; ++i)
@@ -44,6 +52,39 @@ int main(int argc, char * argv[])
   return 0;
 }
 
+
+void generateCircle(int count, int range)
+{
+  int radius = range - 2;
+  int x = -1;
+
+  int quads = count/4;
+  for(int i = 0; i < quads; ++i)
+  {
+    double y = 0;
+    do{
+      ++x;
+      y = circleYmaker(x%(radius+1), radius);
+    } while(y - int(y) > 0.0);
+
+    x = x%(radius+1);
+    cout << x << endl;
+    cout << y << endl;
+    cout << x << endl;
+    cout << -y << endl;
+    cout << -x << endl;
+    cout << y << endl;
+    cout << -x << endl;
+    cout << -y << endl;
+  }
+}
+
+
+double circleYmaker(int x, int radius)
+{
+  return sqrt(radius *  radius - x*x);
+  
+}
 
 void quickSortPointsX(Point ** pArray, int lo, int hi)
 {

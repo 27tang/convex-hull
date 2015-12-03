@@ -3,6 +3,7 @@
 numPoints=10
 
 program=$1
+numRuns=$2
 
 echo ----------------------------------------------------------------
 echo TESTING $program. EACH OUTPUT IS THE AVERAGE CYCLES OF TEN RUNS
@@ -15,7 +16,7 @@ function run {
   done
 }
 
-for j in `seq 1 10`
+for j in `seq 1 $numRuns`
 do
  ./point-set-generator $numPoints 100 -s > temp.in
   echo Running $program with $numPoints points...

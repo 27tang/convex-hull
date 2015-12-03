@@ -22,7 +22,7 @@ averager: averager.cpp
 	g++ averager.cpp -o averager -g 
 
 brook-brute: brook-line.cpp brook-brute.cpp
-	g++ brook-line.cpp brook-brute.cpp -o brook-brute -g
+	g++ -O3 brook-line.cpp brook-brute.cpp -o brook-brute -g
 
 brook-quick: brook-line.cpp brook-quick.cpp
-	g++ brook-line.cpp brook-quick.cpp -o brook-quick -g
+	g++ -O3 brook-line.cpp brook-quick.cpp -o brook-quick -g

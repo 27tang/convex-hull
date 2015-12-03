@@ -4,27 +4,27 @@
 using namespace std;
 
 //Prototypes.
-line * calcLine(int p1[], int p2[]);
-void quickHull(int numPoints, int points[][3]);
-void qhAbove(int numPoints, int **points);
-void qhBelow(int numPoints, int **points);
+line * calcLine(float p1[], float p2[]);
+void quickHull(int numPoints, float points[][3]);
+void qhAbove(int numPoints, float **points);
+void qhBelow(int numPoints, float **points);
 
 int main() {
     int numPoints = 0;
     cin >> numPoints; cin.ignore();
 
-    int points[numPoints][3];
+    float points[numPoints][3];
 
     for (int i = 0; i < numPoints; ++i) {
         cin >> points[i][0]; cin.ignore();
         cin >> points[i][1]; cin.ignore();
         points[i][2] = 0;
     }
-/*
-    cout << numPoints << "\n";
-    for (int i = 0; i < numPoints; ++i)
-        cout << points[i][0] << "\n" << points[i][1] << "\n";
-*/
+
+//    cout << numPoints << "\n";
+//    for (int i = 0; i < numPoints; ++i)
+//        cout << points[i][0] << "\n" << points[i][1] << "\n";
+
 
     clock_t t = clock();
 
@@ -53,13 +53,13 @@ int main() {
     return 0;
 }
 
-line * calcLine(int p1[], int p2[]) {
+line * calcLine(float p1[], float p2[]) {
     line *aLine = NULL;
-    int numer = p1[1] - p2[1];
+    float numer = p1[1] - p2[1];
     if (numer == 0)
         aLine = new horizontal(p1[1]);
     else {
-        int denom = p1[0] - p2[0];
+        float denom = p1[0] - p2[0];
         if (denom == 0)
             aLine = new vertical(p1[0]);
         else {
@@ -69,23 +69,23 @@ line * calcLine(int p1[], int p2[]) {
     return aLine;
 }
 
-void quickHull(int numPoints, int points[][3]) {
+void quickHull(int numPoints, float points[][3]) {
     if (numPoints < 4) {
         for (int i = 0; i < numPoints; ++i)
             points[i][2] = 1;
         return;
     }
 
-    int *leftMost = points[0];
-    int *rightMost = points[numPoints - 1];
+    float *leftMost = points[0];
+    float *rightMost = points[numPoints - 1];
     line *middleLine = calcLine(leftMost, rightMost);
     leftMost[2] = 1;
     rightMost[2] = 1;
     
-    int *upperLeft[numPoints];
+    float *upperLeft[numPoints];
     int upperCount = 1;
     
-    int *lowerLeft[numPoints];
+    float *lowerLeft[numPoints];
     int lowerCount = 1;
 
     int maxYIndex = 0;
@@ -139,7 +139,7 @@ void quickHull(int numPoints, int points[][3]) {
         
         //If there need to be an upper-right.
         if (urCount > 2) {
-            int *upperRight[urCount];
+            float *upperRight[urCount];
 
             upperRight[0] = upperLeft[maxYIndex];
 
@@ -164,7 +164,7 @@ void quickHull(int numPoints, int points[][3]) {
 
         //If there need to be an upper-right.
         if (lrCount > 2) {
-            int *lowerRight[lrCount];
+            float *lowerRight[lrCount];
 
             lowerRight[0] = lowerLeft[minYIndex];
 
@@ -184,8 +184,8 @@ void quickHull(int numPoints, int points[][3]) {
     }
 }
 
-void qhAbove(int numPoints, int **points) {
-    int *upperLeft[numPoints];
+void qhAbove(int numPoints, float **points) {
+    float *upperLeft[numPoints];
     line *aLine = calcLine(points[0], points[numPoints - 1]);
     int furthestI = 0;
     float dist = 0;
@@ -217,7 +217,7 @@ void qhAbove(int numPoints, int **points) {
         int urCount = count - furthestI;
 
         if (urCount > 2) {
-            int *upperRight[urCount];
+            float *upperRight[urCount];
 
             upperRight[0] = upperLeft[furthestI];
 
@@ -234,8 +234,8 @@ void qhAbove(int numPoints, int **points) {
     }
 }
 
-void qhBelow(int numPoints, int **points) {
-    int *lowerLeft[numPoints];
+void qhBelow(int numPoints, float **points) {
+    float *lowerLeft[numPoints];
     line *aLine = calcLine(points[0], points[numPoints - 1]);
     int furthestI = 0;
     float dist = 0;
@@ -268,7 +268,7 @@ void qhBelow(int numPoints, int **points) {
         int lrCount = count - furthestI;
         
         if (lrCount > 2) {
-            int *lowerRight[lrCount];
+            float *lowerRight[lrCount];
 
             lowerRight[0] = lowerLeft[furthestI];
 
