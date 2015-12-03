@@ -1,5 +1,5 @@
 //Convexhull Proect cs350 Fall 2015
-#include "line.h"
+#include "brook-line.h"
 
 //Base class.
 line::line() {}
@@ -13,8 +13,8 @@ regLine::regLine() {
     this->constant = 0;
 }
 
-regLine::regLine(float numer, float denom, const float point[2]) {
-    slope = numer/denom;
+regLine::regLine(int numer, int denom, const int point[2]) {
+    slope = ((float)numer)/denom;
     this->constant = point[1] - this->slope * point[0];
 }
 
@@ -23,7 +23,7 @@ regLine::~regLine() {
     this->constant = 0;
 }
 
-int regLine::whichSide(const float point[2]) {
+int regLine::whichSide(const int point[2]) {
     float y = this->slope * point[0] + this->constant;
     if (point[1] < y)
         return -1;
@@ -33,7 +33,7 @@ int regLine::whichSide(const float point[2]) {
 }
 
 
-float regLine::distance(const float point[2]) {
+float regLine::distance(const int point[2]) {
     float y = this->slope * point[0] + this->constant;
     y = point[1] - y;
     if (y < 0)
@@ -46,7 +46,7 @@ vertical::vertical() {
     this->x = 0;
 }
 
-vertical::vertical(float xValue) {
+vertical::vertical(int xValue) {
     this->x = xValue;
 }
 
@@ -54,7 +54,7 @@ vertical::~vertical() {
     this->x = 0;
 }
 
-int vertical::whichSide(const float point[2]) {
+int vertical::whichSide(const int point[2]) {
     if (point[0] < this->x)
         return -1;
     if (point[0] == this->x)
@@ -62,7 +62,7 @@ int vertical::whichSide(const float point[2]) {
     return 1;
 }
 
-float vertical::distance(const float point[2]) {
+float vertical::distance(const int point[2]) {
     float d = point[0] - this->x;
     if (d < 0)
         d = d * -1;
@@ -75,7 +75,7 @@ horizontal::horizontal() {
     this->y = 0;
 }
 
-horizontal::horizontal(float yValue) {
+horizontal::horizontal(int yValue) {
     this->y = yValue;
 }
 
@@ -83,7 +83,7 @@ horizontal::~horizontal() {
     this->y = 0;
 }
 
-int horizontal::whichSide(const float point[2]) {
+int horizontal::whichSide(const int point[2]) {
     if (point[1] < this->y)
         return -1;
     if (point[1] == y)
@@ -91,7 +91,7 @@ int horizontal::whichSide(const float point[2]) {
     return 1;
 }
 
-float horizontal::distance(const float point[2]) {
+float horizontal::distance(const int point[2]) {
     float d = point[1] - this->y;
     if (d < 0)
         d = d * -1;

@@ -1,17 +1,17 @@
-#include "line.h"
+#include "brook-line.h"
 #include <iostream>
 #include <ctime>
 using namespace std;
 
 //Prototypes.
-line * calcLine(float p1[], float p2[]);
-void bruteForce(int numPoints, float points[][3]);
+line * calcLine(int p1[], int p2[]);
+void bruteForce(int numPoints, int points[][3]);
 
 int main() {
     int numPoints = 0;
     cin >> numPoints; cin.ignore();
 
-    float points[numPoints][3];
+    int points[numPoints][3];
 
     for (int i = 0; i < numPoints; ++i) {
         cin >> points[i][0]; cin.ignore();
@@ -19,23 +19,28 @@ int main() {
         points[i][2] = 0;
     }
 
+//DISPLAY
+/* 
     cout << numPoints << "\n";
     for (int i = 0; i < numPoints; ++i)
         cout << points[i][0] << "\n" << points[i][1] << "\n";
-
-    //clock_t t = clock();
+*/
+    clock_t t = clock();
 
     //Brute-force.
     bruteForce(numPoints, points);
 
-    //t = clock() - t;
+    t = clock() - t;  
+    cout << t << endl;
 
+/*    
     int total = 0;
     for (int i = 0; i < numPoints; ++i) {
         if (points[i][2] == 1){
             ++total;
         }
     }
+    
     cout << total << "\n";
 
     for (int i = 0; i < numPoints; ++i) {
@@ -44,19 +49,19 @@ int main() {
                  << points[i][1] << "\n";
         }
     }
-
+*/
     return 0;
 }
 
-line * calcLine(float p1[], float p2[]) {
+line * calcLine(int p1[], int p2[]) {
     line *aLine = NULL;
-    float numer = p1[0] - p2[0];
+    int numer = p1[1] - p2[1];
     if (numer == 0)
-        aLine = new vertical(p1[0]);
+        aLine = new horizontal(p1[1]);
     else {
-        float denom = p1[1] - p2[1];
+        int denom = p1[0] - p2[0];
         if (denom == 0)
-            aLine = new horizontal(p1[1]);
+            aLine = new vertical(p1[0]);
         else {
             aLine = new regLine(numer, denom, p1);
         }
@@ -64,7 +69,7 @@ line * calcLine(float p1[], float p2[]) {
     return aLine;
 }
 
-void bruteForce(int numPoints, float points[][3]) { 
+void bruteForce(int numPoints, int points[][3]) { 
     for (int i = 0; i < numPoints; ++i) {
         for (int j = i + 1; j < numPoints; ++j) {
             line *aLine = calcLine(points[i], points[j]);
@@ -77,7 +82,7 @@ void bruteForce(int numPoints, float points[][3]) {
                     if (first == 0)
                         first = aLine->whichSide(points[k]);
                     else {
-                        float next = aLine->whichSide(points[k]);
+                        int next = aLine->whichSide(points[k]);
                         if (next != 0 && first != next)
                             SFSGood = false;
                     }
