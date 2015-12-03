@@ -19,23 +19,29 @@ int main() {
         points[i][2] = 0;
     }
 
+//DISPLAY
+/*    
     cout << numPoints << "\n";
     for (int i = 0; i < numPoints; ++i)
         cout << points[i][0] << "\n" << points[i][1] << "\n";
-
-    //clock_t t = clock();
+*/
+    clock_t t = clock();
 
     //Brute-force.
     bruteForce(numPoints, points);
 
-    //t = clock() - t;
+    t = clock() - t;  
+    cout << t << endl;
 
+/*    
     int total = 0;
     for (int i = 0; i < numPoints; ++i) {
         if (points[i][2] == 1){
             ++total;
         }
     }
+
+    
     cout << total << "\n";
 
     for (int i = 0; i < numPoints; ++i) {
@@ -44,7 +50,7 @@ int main() {
                  << points[i][1] << "\n";
         }
     }
-
+*/
     return 0;
 }
 

@@ -21,18 +21,20 @@ int main() {
         points[i][2] = 0;
     }
 
-    cout << numPoints << "\n";
-    for (int i = 0; i < numPoints; ++i)
-        cout << points[i][0] << "\n" << points[i][1] << "\n";
+//    cout << numPoints << "\n";
+//    for (int i = 0; i < numPoints; ++i)
+//        cout << points[i][0] << "\n" << points[i][1] << "\n";
 
 
-    //clock_t t = clock();
+    clock_t t = clock();
 
     //Quickhull.  
     quickHull(numPoints, points);
 
-    //t = clock() - t;
+    t = clock() - t;
     
+    cout << t << endl;
+/*    
     int total = 0;
     for (int i = 0; i < numPoints; ++i) {
         if (points[i][2] == 1){
@@ -47,7 +49,7 @@ int main() {
                  << points[i][1] << "\n";
         }
     }
-
+*/
     return 0;
 }
 
