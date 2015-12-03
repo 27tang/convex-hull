@@ -40,6 +40,10 @@
                         -g 
                               outputs the original set of points and the convex set in a format
                               that can be used as input for the grapher utility.
+                              
+                        -m [NUMBER OF RUNS]
+                              run the program NUMBER OF RUN times, and output the average 
+                              processing time per run.
 
       
 ######quick-hull:
@@ -58,6 +62,10 @@
                         -g 
                               outputs the original set of points and the convex set in a format
                               that can be used as input for the grapher utility.
+                              
+                        -m [NUMBER OF RUNS]
+                              run the program NUMBER OF RUN times, and output the average 
+                              processing time per run.
                   
 ######grapher:
 
