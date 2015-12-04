@@ -135,13 +135,38 @@ void BruteForce::displayForGrapher()
 int main(int argc, char * argv[])
 {
 	BruteForce bruteForce;
-    	bruteForce.readInPoints();
-	bruteForce.findConvexHull();
-    	if(argc > 1 && strcmp(argv[1], "-g") == 0)
-    		bruteForce.displayForGrapher();
-    	else
-      		bruteForce.displayProcessingTime();
+    bruteForce.readInPoints();
+    bruteForce.findConvexHull();
 
-	return 0;
+    clock_t cycles;
+    
+    if(argc > 2 && strcmp(argv[1], "-m") == 0)
+    {
+      int numTimes = atoi(argv[2]);
+      cycles = clock(); 
+      for(int i=0; i < numTimes; ++i)
+      {
+        bruteForce.findConvexHull();
+      }
+      cycles = clock() - cycles; 
+      cout << cycles/numTimes << endl;
+      return 1;
+    }
+
+    if(argc > 1 && strcmp(argv[1], "-g") == 0)
+    {
+      bruteForce.findConvexHull();
+      bruteForce.displayForGrapher();
+      return 2;
+    }
+    else
+    {
+      cycles = clock();
+      bruteForce.findConvexHull();
+      cycles = clock() - cycles;
+      cout << cycles << endl;
+    }
+    return 0;
+
 }
 
